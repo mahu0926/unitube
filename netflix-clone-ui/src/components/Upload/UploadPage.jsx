@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import styles from './UploadPage.module.css';
 
 import UploadProgressBar from './UploadProgressBar';
+import useUpload from './UploadHook';
 
 const UploadPage = () => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -13,6 +14,8 @@ const UploadPage = () => {
     const [uploadSuccess, setUploadSuccess] = useState(false);
     const [showTranslatedVideo, setShowTranslatedVideo] = useState(false);
     const [transcript, setTranscript] = useState('');
+
+    const { progress, isUploading, error, uploadFile } = useUpload(); // Call the hook
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
