@@ -63,12 +63,12 @@ const UploadPage = () => {
     };
 
     const languageOptions = [
-        { code: 'en', name: 'English' },
-        { code: 'es', name: 'Spanish' },
         { code: 'zh', name: 'Chinese' },
-        { code: 'hi', name: 'Hindi' },
-        { code: 'ar', name: 'Arabic' },
+        { code: 'en', name: 'English' },
         { code: 'fr', name: 'French' },
+        { code: 'ge', name: 'German' },
+        { code: 'hi', name: 'Hindi' },
+        { code: 'es', name: 'Spanish' },
         { code: 'ru', name: 'Russian' },
     ];
 
