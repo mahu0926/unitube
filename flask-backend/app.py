@@ -23,10 +23,10 @@ with app.app_context():
 
 @app.route('/upload', methods=['POST'])
 def upload():
-    language='en'
     if 'video' in request.files:
         video = request.files['video']
         filename = secure_filename(video.filename)
+        language = request.args.get('language', 'en')  # Default language is 'en' if not provided
         upload_path = os.path.join(app.config['UPLOADED_VIDEOS_DEST'], language, filename)
         os.makedirs(os.path.dirname(upload_path), exist_ok=True)
         video.save(upload_path)
@@ -34,6 +34,7 @@ def upload():
         db.session.add(new_video)
         db.session.commit()
         return 'Video uploaded and saved in database'
+    
     return 'No video uploaded'
 
 @app.route('/videos', methods=['GET'])

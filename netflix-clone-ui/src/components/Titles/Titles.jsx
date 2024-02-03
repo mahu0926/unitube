@@ -15,8 +15,6 @@ const Titles = () => {
         { id: 3, name: "Video 3", url: "https://example.com/video3" },
     ];
 
-    const enVideos = [{"filepath":"/Users/charliesun/Documents/code/unitube/flask-backend/db/en/Untitled.mp4","id":1,"name":"Untitled.mp4"},{"filepath":"/Users/charliesun/Documents/code/unitube/flask-backend/db/en/trump1.mp4","id":2,"name":"trump1.mp4"}];
-
     return (
         <div className={styles.titles}>
             {videos && videos.en && <Segment title="English" videos={videos.en} />}
