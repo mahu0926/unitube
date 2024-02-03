@@ -3,6 +3,9 @@
 import React, { useState } from 'react';
 import styles from './UploadPage.module.css';
 
+import UploadProgressBar from './UploadProgressBar';
+import useUpload from './UploadHook';
+
 const UploadPage = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
@@ -11,6 +14,8 @@ const UploadPage = () => {
     const [uploadSuccess, setUploadSuccess] = useState(false);
     const [showTranslatedVideo, setShowTranslatedVideo] = useState(false);
     const [transcript, setTranscript] = useState('');
+
+    const { progress, isUploading, error, uploadFile } = useUpload(); // Call the hook
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -131,20 +136,7 @@ const UploadPage = () => {
                                                 Upload
                                             </button>
                                         </div>
-                                        {uploadProgress > 0 && (
-                                            <div className={styles.ProgressBarSection}>
-                                                <div className={styles.Line}></div>
-                                                <div className={styles.ProgressBar}>
-                                                    <div
-                                                        className={styles.ProgressBarFill}
-                                                        style={{ width: `${uploadProgress}%` }}
-                                                    />
-                                                </div>
-                                                <div className={styles.ProgressBarPercentage}>
-                                                    {uploadProgress <= 100 ? uploadProgress : 100}%
-                                                </div>
-                                            </div>
-                                        )}
+                                        {uploadProgress > 0 && <UploadProgressBar uploadProgress={uploadProgress} />}
                                     </>
                                 )}
                             </div>
