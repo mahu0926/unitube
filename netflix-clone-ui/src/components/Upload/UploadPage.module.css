@@ -1,3 +1,5 @@
+/* UploadPage.module.css */
+
 .UploadPage {
     display: flex;
     flex-direction: column;
@@ -7,6 +9,7 @@
     background-color: #2c2c2c; /* dark gray background */
     font-family: 'Arial', sans-serif; /* modern, clean font */
     color: #f4f4f4; /* light text color */
+    overflow: auto;
 }
 
 .UploadPage h1 {
@@ -37,7 +40,7 @@
     padding: 20px; /* Add padding for better spacing */
 }
 
-.LanguageDropdown {
+.TranslateDropdown {
     margin-bottom: 20px;
 }
 
@@ -49,6 +52,7 @@
     color: #f4f4f4; /* light text color */
     padding: 10px; /* add some padding */
     border-radius: 5px; /* rounded corners */
+    overflow: hidden;
 }
 
 .UploadPage button {
@@ -85,6 +89,7 @@
     height: 100%;
     border-radius: 5px; /* rounded corners */
     background-color: #4CAF50; /* Green */
+    overflow: hidden;
 }
 
 .ProgressBarPercentage {
@@ -92,15 +97,14 @@
     font-weight: bold;
 }
 
-.TranscriptBox {
-    background-color: #998c6e; /* Beige background */
-    border: 1px solid #ddd; /* Gray border */
-    padding: 20px; /* Add padding for content */
-    margin: 20px 0; /* Add margin for spacing */
-}
 
-.TranscriptContent {
-    max-height: 300px; /* Set a max height for scrolling if content is too long */
-    overflow-y: auto; /* Add scroll for long content */
-    width: auto; 
+.FullScreenVideo {
+    overflow: hidden;
+    width: 100vw;
+    height: calc(100vh - 60px); /* Adjusted height to fit just below the navigation bar */
+    object-fit: cover;
+    position: fixed;
+    top: 60px; /* Adjusted top position to start below the navigation bar */
+    left: 0;
+    z-index: 1000;
 }

@@ -2,6 +2,7 @@
     overflow: hidden;
     margin-bottom: 1.5rem;
     position: relative;
+    white-space: nowrap; /* Prevents text wrapping to the next line */
 }
 
 .title {
@@ -16,11 +17,23 @@
 
 .row {
     display: flex;
+    overflow-x: scroll; /* Enable horizontal scrolling with scrollbar */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #888 transparent; /* For Firefox */
+}
+
+.row::-webkit-scrollbar {
+    width: 10px; /* For Chrome, Safari, and Opera */
+}
+
+.row::-webkit-scrollbar-thumb {
+    background-color: #888; /* For Chrome, Safari, and Opera */
 }
 
 .row img {
     margin-right: 0.5rem;
     border-radius: 4px;
+    max-width: 250px; /* Adjust the max-width to make the images smaller */
 }
 
 .button {
@@ -33,6 +46,7 @@
     border: none;
     cursor: pointer;
 }
+
 .row:hover .button {
     display: block;
 }

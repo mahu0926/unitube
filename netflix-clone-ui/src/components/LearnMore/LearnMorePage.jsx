@@ -44,7 +44,7 @@ const LearnMorePage = () => {
         <div className={styles.LearnMorePage}>
             <div className={styles.Container}>
                 <div className={styles.Header}>
-                    <h1 className={styles.ProjectTitle}> UniTube Information</h1>
+                    <h1 className={styles.ProjectTitle}> ÜniTube Information</h1>
                     <p className={styles.ProjectDescription}>{projectDescription}</p>
                 </div>
                 <div className={styles.AboutProject}>
@@ -54,7 +54,7 @@ const LearnMorePage = () => {
                 <div className={styles.ContactUs}>
                     <h2>Contact Us</h2>
                     <p>
-                        For any inquiries or assistance, please contact us at <a href="mailto:info@example.com">info@example.com</a>.
+                        For any inquiries or assistance, please contact us at <a href="mailto:ÜniTube@example.com">info@example.com</a>.
                     </p>
                 </div>
             </div>
