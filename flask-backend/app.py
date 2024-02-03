@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
@@ -43,13 +43,19 @@ def get_videos():
     for video in videos:
         if video.language not in video_dict:
             video_dict[video.language] = []
-        video_path = os.path.join(app.config['UPLOADED_VIDEOS_DEST'], video.language, video.filename)
-        video_dict[video.language].append({
+            video_path = os.path.join('db', video.language, video.filename)
+            video_dict[video.language].append({
             'id': video.id,
             'name': video.name,
             'filepath': video_path
         })
     return jsonify(video_dict)
+
+
+@app.route('/videos/<path:directory>/<filename>')
+def serve_video(directory, filename):
+    path = os.path.join(os.path.dirname(__file__), 'db', directory)
+    return send_from_directory(path, filename)
 
 
 if __name__ == '__main__':
