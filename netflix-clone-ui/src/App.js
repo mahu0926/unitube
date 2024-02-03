@@ -12,19 +12,18 @@ import UploadPage from './components/Upload/UploadPage';
 import LearnMorePage from './components/LearnMore/LearnMorePage';
 
 
-
 function App() {
-        return (
-            <Router>
-                <Navigation /> {/* Add the Navigation component here */}
-                <Routes>
-                    <Route path="/" element={<><Billboard /><Titles /></>} />
-                    <Route path="/upload" element={<UploadPage />} />
-                    <Route path="/learn-more" element={<LearnMorePage />} />
-                </Routes>
-                <Footer />
-            </Router>
-        );
-    }
+    return (
+        <Router>
+            <Navigation /> {/* Add the Navigation component here */}
+            <Routes>
+                <Route path="/" element={<><Billboard /><Titles /></>} />
+                <Route path="/upload" element={<UploadPage />} />
+                <Route path="/learn-more" element={<LearnMorePage />} />
+            </Routes>
+            <Footer />
+        </Router>
+    );
+}
   
 export default App;
