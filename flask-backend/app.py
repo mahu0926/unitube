@@ -43,8 +43,9 @@ def get_videos():
     for video in videos:
         if video.language not in video_dict:
             video_dict[video.language] = []
-            video_path = os.path.join(video.language, video.filename)
-            video_dict[video.language].append({
+            
+        video_path = os.path.join(video.language, video.filename)
+        video_dict[video.language].append({
             'id': video.id,
             'name': video.name,
             'filepath': video_path
