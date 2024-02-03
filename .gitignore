@@ -4,3 +4,5 @@ deepfake backend/myenv/
 deepfake backend/google-cloud-cli-VERSION-darwin-arm.tar
 netflix-clone-ui/node_modules/
 
+flask-backend/db/
+flask-backend/test-data/
