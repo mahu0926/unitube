@@ -24,12 +24,12 @@ const HomePage = () => {
                         {/* Use Link component for navigation to /upload */}
                         <Link to="/upload" className={styles.playButton}>
                             <PlayIcon />
-                            <span>Upload</span>
+                            <span> Upload</span>
                         </Link>
                         {/* Use Link component for navigation to /learnmore */}
                         <Link to="/learn-more" className={styles.infoButton}>
                             <InfoIcon />
-                            <span>Learn More</span>
+                            <span> Learn More</span>
                         </Link>
                     </div>
                 </div>

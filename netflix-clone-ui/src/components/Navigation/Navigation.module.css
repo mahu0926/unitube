@@ -17,8 +17,9 @@
 }
 
 .logo {
+    margin-bottom: -5px;
     height: fit-content;
-    max-width: 92px;
+    max-width: 50px;
 }
 
 .navigationList {

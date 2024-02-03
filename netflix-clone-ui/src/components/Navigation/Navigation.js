@@ -1,10 +1,11 @@
+// Navigation.js
+
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import SecondaryNavigation from '../SecondaryNavigation';
-
 import logo from './assets/logo.png';
 import styles from './Navigation.module.css';
-import { Link } from 'react-router-dom';
 
 const Navigation = () => {
     const navItems = {
@@ -20,7 +21,9 @@ const Navigation = () => {
     return (
         <div className={styles.navigation}>
             <div className={styles.mainNavigation}>
-                <img className={styles.logo} src={logo} alt="logo" />
+                <Link to="/" className={styles.logoButton}>
+                    <img className={styles.logo} src={logo} alt="Logo" />
+                </Link>
                 <ul className={styles.navigationList}>
                     {Object.entries(navItems).map(([item, link]) => (
                         <li className={styles.navigationItem} key={item}>
