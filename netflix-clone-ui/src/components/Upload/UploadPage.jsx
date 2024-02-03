@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import styles from './UploadPage.module.css';
 
+import UploadProgressBar from './UploadProgressBar';
+
 const UploadPage = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
@@ -131,20 +133,7 @@ const UploadPage = () => {
                                                 Upload
                                             </button>
                                         </div>
-                                        {uploadProgress > 0 && (
-                                            <div className={styles.ProgressBarSection}>
-                                                <div className={styles.Line}></div>
-                                                <div className={styles.ProgressBar}>
-                                                    <div
-                                                        className={styles.ProgressBarFill}
-                                                        style={{ width: `${uploadProgress}%` }}
-                                                    />
-                                                </div>
-                                                <div className={styles.ProgressBarPercentage}>
-                                                    {uploadProgress <= 100 ? uploadProgress : 100}%
-                                                </div>
-                                            </div>
-                                        )}
+                                        {uploadProgress > 0 && <UploadProgressBar uploadProgress={uploadProgress} />}
                                     </>
                                 )}
                             </div>
