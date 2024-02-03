@@ -1,0 +1,93 @@
+/* Billboard.module.css */
+
+.billboard {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.innerBillboard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.billboardHeroImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.billboardHeroOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 1;
+}
+
+.billboardHeroTitle {
+    max-width: 66.67%; /* 2/3rds of the page width */
+    height: auto;
+    margin: 0 auto; /* Center the title horizontally */
+}
+
+.description {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.playButton,
+.infoButton {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.playButton:hover,
+.infoButton:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Add the following styles to change the color of the icon path directly */
+.playButton svg path,
+.infoButton svg path {
+    fill: #fff; /* Set initial icon color */
+    transition: fill 0.3s; /* Add transition for smooth color change */
+}
+
+.playButton:hover svg path,
+.infoButton:hover svg path {
+    fill: #000; /* Change icon color on hover */
+}
