@@ -50,3 +50,13 @@
 .row:hover .button {
     display: block;
 }
+
+.caption {
+    color: #f0f0f0; /* Light colored font */
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    border-radius: 5px;
+}

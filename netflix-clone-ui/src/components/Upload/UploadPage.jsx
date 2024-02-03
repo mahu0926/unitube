@@ -9,14 +9,12 @@ import useUpload from './UploadHook';
 const UploadPage = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
-    const [uploadProgress, setUploadProgress] = useState(0);
     const [selectedLanguage, setSelectedLanguage] = useState('en');
-    const [uploadSuccess, setUploadSuccess] = useState(false);
     const [showTranslatedVideo, setShowTranslatedVideo] = useState(false);
     const [transcript, setTranscript] = useState('');
     const [hideText, setHideText] = useState(false);
 
-    const { progress, isUploading, error, uploadFile } = useUpload(); // Call the hook
+    const { progress, isUploading, error, uploadFile, uploadSuccess } = useUpload(); // Call the hook
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -36,22 +34,18 @@ const UploadPage = () => {
         }
     };
 
-    const handleUpload = () => {
+    const handleUpload = async () => {
+        console.log('Uploading file...');
         if (!selectedFile) {
             return;
         }
 
-        const interval = setInterval(() => {
-            setUploadProgress((prevProgress) => {
-                const newProgress = prevProgress + 10;
-                if (newProgress >= 100) {
-                    clearInterval(interval);
-                    setUploadSuccess(true);
-                    setTranscript('This is the transcript text.'); // Replace with the actual transcript
-                }
-                return newProgress > 100 ? 100 : newProgress;
-            });
-        }, 500);
+        await uploadFile(selectedFile);
+        if (error) {
+            console.error(`Upload failed: ${error}`);
+        } else {
+            console.log('Upload successful');
+        }
     };
 
     const handleWatchTranslatedVideo = () => {
@@ -154,7 +148,7 @@ const UploadPage = () => {
                                                 Upload
                                             </button>
                                         </div>
-                                        {uploadProgress > 0 && <UploadProgressBar uploadProgress={uploadProgress} />}
+                                        {progress > 0 && <UploadProgressBar uploadProgress={progress} />}
                                     </>
                                 )}
                             </div>

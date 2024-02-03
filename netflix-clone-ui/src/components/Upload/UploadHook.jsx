@@ -5,6 +5,7 @@ const useUpload = () => {
     const [progress, setProgress] = useState(0);
     const [isUploading, setIsUploading] = useState(false);
     const [error, setError] = useState(null);
+    const [uploadSuccess, setUploadSuccess] = useState(false);
 
     const uploadFile = async (file) => {
         setIsUploading(true);
@@ -12,29 +13,30 @@ const useUpload = () => {
     
         try {
             const formData = new FormData();
-            formData.append('file', file);
+            formData.append('video', file);  // Make sure the 'name' is the same as what the server expects
     
-            const response = await axios.post('/api/upload', formData, {    // TODO: Replace with the actual API endpoint
+            const response = await axios.post('http://127.0.0.1:5000/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
                 onUploadProgress: (progressEvent) => {
                     const progressPercentage = Math.round((progressEvent.loaded * 100) / progressEvent.total);
                     setProgress(progressPercentage);
-                }
+                },
             });
     
             setIsUploading(false);
-    
-            if (!response.ok) {
-                throw new Error('Error uploading file');
+            if (response.status !== 200) {
+                throw new Error(`Error status code: ${response.status}`);
             }
-    
-            // Handle the response here
-        } catch (error) {
-            setError(error.message);
+            setUploadSuccess(true);
+        } catch (err) {
+            setError(err.message);
             setIsUploading(false);
         }
     };
 
-    return { progress, isUploading, error, uploadFile };
+    return { uploadFile, progress, isUploading, error, uploadSuccess };
 };
 
 export default useUpload;

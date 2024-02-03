@@ -5,7 +5,9 @@ import ChevronRightIcon from './ChevronRightIcon';
 import placeholderImg from './assets/thumbnail-top10-h.jpg';
 import styles from './Segment.module.css';
 
-const Segment = ({ title }) => {
+import { Link } from 'react-router-dom';
+
+const Segment = ({ title, videos }) => {
     return (
         <div className={styles.segment}>
             <p className={styles.title}>
@@ -15,7 +17,7 @@ const Segment = ({ title }) => {
                         <path
                             d="M3.5 3L21 20.5L3.5 38"
                             stroke="white"
-                            strokeWidth="4" // Corrected from stroke-width to strokeWidth
+                            strokeWidth="4"
                             strokeLinecap="square"
                             strokeLinejoin="round"
                         />
@@ -23,11 +25,14 @@ const Segment = ({ title }) => {
                 </span>
             </p>
             <div className={styles.row}>
-                <img className={styles.smallImage} src={placeholderImg} alt="" />
-                <img className={styles.smallImage} src={placeholderImg} alt="" />
-                <img className={styles.smallImage} src={placeholderImg} alt="" />
-                <img className={styles.smallImage} src={placeholderImg} alt="" />
-                <img className={styles.smallImage} src={placeholderImg} alt="" />
+                {videos.map((video, index) => (
+                    <div key={index}>
+                        <Link to={`http://127.0.0.1:5000/videos/${encodeURIComponent(video.filepath)}`}>
+                            <img src={video.thumbnail || placeholderImg} alt={video.name} />
+                            <p className={styles.caption}>{video.name}</p>
+                        </Link>
+                    </div>
+                ))}
                 <button className={styles.button}>
                     <ChevronRightIcon />
                 </button>
