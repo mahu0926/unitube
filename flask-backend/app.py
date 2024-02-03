@@ -1,9 +1,12 @@
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
+from flask_cors import CORS
 import os
 
 app = Flask(__name__)
+CORS(app)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 app.config['UPLOADED_VIDEOS_DEST'] = os.path.join(os.path.dirname(__file__), 'db')
 
