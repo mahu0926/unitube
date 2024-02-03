@@ -1,33 +1,34 @@
-import React from 'react';
+// HomePage.js
 
+import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import PlayIcon from './PlayIcon';
 import InfoIcon from './InfoIcon';
-
-import billboardHeroImg from './assets/billboard.webp';
-import billboardHeroTitle from './assets/billboard-title.webp';
-
+import deepfakeHeroImg from './assets/billboard.webp';
+import deepfakeHeroTitle from './assets/billboard-title.webp';
 import styles from './Billboard.module.css';
 
-const Billboard = () => {
+const HomePage = () => {
     return (
         <div className={styles.billboard}>
             <div className={styles.innerBillboard}>
-                <img src={billboardHeroImg} alt="" />
-                <div className={styles.fadeOut}></div>
+                <img className={styles.billboardHeroImage} src={deepfakeHeroImg} alt="Deepfake Video" />
+                <div className={styles.billboardHeroOverlay}></div>
                 <div className={styles.info}>
-                    <img src={billboardHeroTitle} alt="Abstract: The Art of Design" />
-                    <div className={styles.description}>
-                        Step inside the minds of the most innovative designers in a variety of disciplines and learn how
-                        design impacts every aspect of life.
-                    </div>
+                    <img className={styles.billboardHeroTitle} src={deepfakeHeroTitle} alt="Deepfake Translation" />
+                    <p className={styles.description}>
+                        Revolutionizing video translation through advanced deepfake technology. Translate videos into
+                        different languages with seamless synchronization.
+                    </p>
                     <div className={styles.links}>
-                        <a href="/">
+                        {/* Use Link component for navigation */}
+                        <Link to="/upload" className={styles.playButton}>
                             <PlayIcon />
-                            <span>Play</span>
-                        </a>
-                        <button type="button">
+                            <span>Upload</span>
+                        </Link>
+                        <button type="/learnmore" className={styles.infoButton}>
                             <InfoIcon />
-                            <span>More Info</span>
+                            <span>Learn More</span>
                         </button>
                     </div>
                 </div>
@@ -36,4 +37,4 @@ const Billboard = () => {
     );
 };
 
-export default Billboard;
+export default HomePage;

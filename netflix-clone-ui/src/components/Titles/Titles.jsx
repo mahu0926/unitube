@@ -7,10 +7,10 @@ import styles from './Titles.module.css';
 const Titles = () => {
     return (
         <div className={styles.titles}>
-            <Segment title="Popular on Netflix" />
-            <Segment title="Continue watching for Home" />
-            <Segment title="Trending Now" />
-            <Segment title="Watch It Again" />
+            <Segment title="Recently Translated" />
+            <Segment title="French" />
+            <Segment title="Spanish" />
+            <Segment title="Hindi" />
         </div>
     );
 };

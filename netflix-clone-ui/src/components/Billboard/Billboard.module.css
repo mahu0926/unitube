@@ -1,83 +1,93 @@
+/* Billboard.module.css */
+
 .billboard {
-    /* background-color: greenyellow; */
     position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    color: white;
     width: 100%;
-    height: 56.25vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.billboard img {
+.innerBillboard {
+    position: relative;
     width: 100%;
+    height: 100%;
 }
-.fadeOut {
-    background-image: linear-gradient(
-        to bottom,
-        rgba(20, 20, 20, 0) 0,
-        rgba(20, 20, 20, 0.15) 15%,
-        rgba(20, 20, 20, 0.35) 29%,
-        rgba(20, 20, 20, 0.58) 44%,
-        #141414 68%,
-        #141414 100%
-    );
-    position: absolute;
-    background-size: 100% 100%;
-    background-position: 0 top;
-    background-repeat: repeat-x;
-    background-color: transparent;
+
+.billboardHeroImage {
     width: 100%;
-    height: 14.7vw;
-    top: auto;
-    bottom: -1px;
+    height: 100%;
+    object-fit: cover;
 }
-.info {
+
+.billboardHeroOverlay {
     position: absolute;
     top: 0;
-    bottom: 35%;
-    left: 4%;
-    width: 36%;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 1;
+}
+
+.billboardHeroTitle {
+    max-width: 66.67%; /* 2/3rds of the page width */
+    height: auto;
+    margin: 0 auto; /* Center the title horizontally */
 }
 
 .description {
-    margin-top: 1rem;
-    font-size: 1.2rem;
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.5;
 }
 
 .links {
+    margin-top: 30px;
     display: flex;
-    margin-top: 1rem;
+    justify-content: center;
 }
 
-.links a,
-.links button {
-    border-radius: 4px;
-    border: none;
-    padding: 0.7rem 1.1rem;
+
+
+.playButton,
+.infoButton {
     display: flex;
     align-items: center;
-    font-weight: bold;
-    margin-right: 0.5rem;
-}
-
-.links a {
+    padding: 15px 25px;
+    margin: 0 10px;
     text-decoration: none;
-    color: black;
-    background-color: white;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.links button {
-    color: white;
-    background-color: rgba(109, 109, 110, 0.7);
-    cursor: pointer;
+.playButton:hover,
+.infoButton:hover {
+    background-color: #fff;
+    color: #000;
 }
 
-.links a span,
-.links button span {
-    margin-left: 0.5rem;
+/* Add the following styles to change the color of the icon path directly */
+.playButton svg path,
+.infoButton svg path {
+    fill: #fff; /* Set initial icon color */
+    transition: fill 0.3s; /* Add transition for smooth color change */
+}
+
+.playButton:hover svg path,
+.infoButton:hover svg path {
+    fill: #000; /* Change icon color on hover */
 }
