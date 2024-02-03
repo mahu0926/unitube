@@ -39,14 +39,17 @@ def upload():
 @app.route('/videos', methods=['GET'])
 def get_videos():
     videos = Video.query.all()
-    video_list = []
+    video_dict = {}
     for video in videos:
-        video_list.append({
+        if video.language not in video_dict:
+            video_dict[video.language] = []
+        video_path = os.path.join(app.config['UPLOADED_VIDEOS_DEST'], video.language, video.filename)
+        video_dict[video.language].append({
             'id': video.id,
             'name': video.name,
-            'filename': video.filename
+            'filepath': video_path
         })
-    return jsonify(video_list)
+    return jsonify(video_dict)
 
 
 if __name__ == '__main__':
