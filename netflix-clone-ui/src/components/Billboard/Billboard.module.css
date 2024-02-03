@@ -4,13 +4,14 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .innerBillboard {
     position: relative;
     width: 100%;
     height: 100%;
+    
 }
 
 .billboardHeroImage {
@@ -36,6 +37,7 @@
     text-align: center;
     color: #fff;
     z-index: 1;
+    
 }
 
 .billboardHeroTitle {

@@ -14,6 +14,7 @@ const UploadPage = () => {
     const [uploadSuccess, setUploadSuccess] = useState(false);
     const [showTranslatedVideo, setShowTranslatedVideo] = useState(false);
     const [transcript, setTranscript] = useState('');
+    const [hideText, setHideText] = useState(false);
 
     const { progress, isUploading, error, uploadFile } = useUpload(); // Call the hook
 
@@ -55,6 +56,21 @@ const UploadPage = () => {
 
     const handleWatchTranslatedVideo = () => {
         setShowTranslatedVideo(true);
+        setHideText(true); // Set hideText to true when watching the translated video
+
+        const videoElement = document.getElementById('translatedVideo');
+
+        if (videoElement) {
+            if (videoElement.requestFullscreen) {
+                videoElement.requestFullscreen();
+            } else if (videoElement.mozRequestFullScreen) {
+                videoElement.mozRequestFullScreen();
+            } else if (videoElement.webkitRequestFullscreen) {
+                videoElement.webkitRequestFullscreen();
+            } else if (videoElement.msRequestFullscreen) {
+                videoElement.msRequestFullscreen();
+            }
+        }
     };
 
     const handleLanguageChange = (event) => {
@@ -74,11 +90,21 @@ const UploadPage = () => {
 
     return (
         <div className={styles.UploadPage}>
-            <h1 className={styles.UploadTitle}>Upload Video to be Translated</h1>
+            {hideText ? null : <h1 className={styles.UploadTitle}>Upload Video to be Transcribed</h1>}
             <div className={styles.SplitLayout}>
                 <div className={styles.Preview}>
                     {showTranslatedVideo ? (
-                        <video width="100%" height="100%" controls>
+                        <video
+                            width="100%"
+                            height="100%"
+                            controls
+                            className={styles.FullScreenVideo}
+                            id="translatedVideo"
+                            onEnded={() => {
+                                setShowTranslatedVideo(false);
+                                setHideText(false); // Set hideText to false when the video ends
+                            }}
+                        >
                             <source src={previewUrl} type={selectedFile?.type} />
                             Your browser does not support the video tag.
                         </video>
@@ -94,14 +120,6 @@ const UploadPage = () => {
                     )}
                 </div>
                 <div className={styles.RightSection}>
-                    {showTranslatedVideo && (
-                        <div className={styles.TranscriptBox}>
-                            <h2>Interactive Transcript</h2>
-                            <div className={styles.TranscriptContent}>
-                                <p>{transcript}</p>
-                            </div>
-                        </div>
-                    )}
                     {!showTranslatedVideo && (
                         <>
                             <div className={styles.TranslateDropdown}>
