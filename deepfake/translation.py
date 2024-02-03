@@ -1,4 +1,6 @@
 import os
+import requests
+
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "refined-network-320317-cdee89864c6c.json"
 from moviepy.editor import VideoFileClip
 from pydub import AudioSegment
@@ -40,9 +42,9 @@ def translate_text(text, target_language='es'):
     # print(f'Translation in {target_language}: {result["translatedText"]}')
     return result["translatedText"]
 
-def transcribe_video(audio_file_path):
+def transcribe_video(audio_file_path, target_language='es'):
     client = speech.SpeechClient()
-    audio_frame_rate =  AudioSegment.from_wav("videos/output_audio.wav").frame_rate
+    audio_frame_rate =  AudioSegment.from_wav(audio_file_path).frame_rate
     # print(f"Sample rate: {audio.frame_rate} Hz")
 
     with io.open(audio_file_path, "rb") as audio_file:
@@ -59,15 +61,47 @@ def transcribe_video(audio_file_path):
 
     result_transcript = ""
     for result in response.results:
-        translation = translate_text(result.alternatives[0].transcript)
+        translation = translate_text(result.alternatives[0].transcript, target_language)
         # print("Transcript: {}".format(translation))
         result_transcript += str(translation)
     return result_transcript
 
-input_file = 'videos/video1594907834.mp4'
-output_file = 'videos/output_audio.wav'
+def video_text_to_speech(video_path, text, file_name, target_language):
+    url = "https://f259-104-196-141-29.ngrok-free.app/video-text-to-speech"
 
-convert_video_to_wav(input_file, output_file)
-convert_stereo_to_mono(output_file, output_file)
-print(transcribe_video(output_file))
+    # The file you want to upload
+    files = {
+        'video': ('filename.mp4', open(video_path, 'rb'), 'video/mp4')
+    }
+
+    # Any additional data you want to send with the file
+    data = {
+        'translation': text,
+        'language': target_language
+    }
+
+    response = requests.get(url, files=files, data=data)
+    print(response.status_code)
+    output_file_path = os.path.join('videos/output_videos', file_name)
+    if response.status_code == 200:
+        with open(output_file_path, 'wb') as output_file:
+            output_file.write(response.content)
+        print(f"Video downloaded successfully to {output_file_path}")
+    else:
+        print(f"Error: {response.status_code}")
+
+file_name = 'video1594907834.mp4'
+file_path = os.path.join('videos/input_videos', file_name)
+file_name_wo_ext, file_extension = os.path.splitext(file_name)
+wav_file = file_name_wo_ext + '.wav'
+wav_file_path = os.path.join('videos/input_audios', wav_file)
+
+if not os.path.isfile(file_path):
+    convert_video_to_wav(file_path, wav_file_path)
+    convert_stereo_to_mono(wav_file_path, wav_file_path)
+
+target_language = "de"
+text = transcribe_video(wav_file_path, target_language)
+print(text)
+#  video_text_to_speech(file_path, text, file_name, target_language)
 
