@@ -10,7 +10,7 @@ const Navigation = () => {
     const navItems = {
         'Home': '/',
         'Upload': '/upload',
-        'My List': '/my-list'
+        'Learn More': '/learn-more'
     };
 
     const handleClick = (item) => {

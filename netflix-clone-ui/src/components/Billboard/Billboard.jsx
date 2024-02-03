@@ -1,7 +1,7 @@
 // HomePage.js
 
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 import PlayIcon from './PlayIcon';
 import InfoIcon from './InfoIcon';
 import deepfakeHeroImg from './assets/billboard.webp';
@@ -21,15 +21,16 @@ const HomePage = () => {
                         different languages with seamless synchronization.
                     </p>
                     <div className={styles.links}>
-                        {/* Use Link component for navigation */}
+                        {/* Use Link component for navigation to /upload */}
                         <Link to="/upload" className={styles.playButton}>
                             <PlayIcon />
                             <span>Upload</span>
                         </Link>
-                        <button type="/learnmore" className={styles.infoButton}>
+                        {/* Use Link component for navigation to /learnmore */}
+                        <Link to="/learn-more" className={styles.infoButton}>
                             <InfoIcon />
                             <span>Learn More</span>
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

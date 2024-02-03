@@ -9,6 +9,7 @@ import Billboard from './components/Billboard';
 import Titles from './components/Titles';
 import Footer from './components/Footer';
 import UploadPage from './components/Upload/UploadPage';
+import LearnMorePage from './components/LearnMore/LearnMorePage';
 
 
 
@@ -19,6 +20,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<><Billboard /><Titles /></>} />
                     <Route path="/upload" element={<UploadPage />} />
+                    <Route path="/learn-more" element={<LearnMorePage />} />
                 </Routes>
                 <Footer />
             </Router>
