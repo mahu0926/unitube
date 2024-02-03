@@ -1,0 +1,25 @@
+.UploadPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #2c2c2c; /* dark gray background */
+    font-family: 'Arial', sans-serif; /* modern, clean font */
+    color: #f4f4f4; /* light text color */
+}
+
+.UploadPage h1 {
+    font-size: 32px; /* larger, bolder text */
+    margin-bottom: 16px;
+    color: #f4f4f4; /* light text color */
+}
+
+.UploadPage input[type="file"] {
+    margin-bottom: 16px;
+    border: none; /* remove default border */
+    background-color: #444; /* darker gray background */
+    color: #f4f4f4; /* light text color */
+    padding: 10px; /* add some padding */
+    border-radius: 5px; /* rounded corners */
+}

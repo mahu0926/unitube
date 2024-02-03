@@ -4,23 +4,32 @@ import SecondaryNavigation from '../SecondaryNavigation';
 
 import logo from './assets/logo.png';
 import styles from './Navigation.module.css';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => {
-    const navItems = ['Home', 'TV Shows', 'Movies', 'New & Popular', 'My List'];
+    const navItems = {
+        'Home': '/',
+        'Upload': '/upload',
+        'My List': '/my-list'
+    };
+
+    const handleClick = (item) => {
+        console.log(`Clicked on ${item}`);
+    };
 
     return (
         <div className={styles.navigation}>
             <div className={styles.mainNavigation}>
                 <img className={styles.logo} src={logo} alt="logo" />
                 <ul className={styles.navigationList}>
-                    {navItems.map(item => (
+                    {Object.entries(navItems).map(([item, link]) => (
                         <li className={styles.navigationItem} key={item}>
-                            <a href="/">{item}</a>
+                            <Link to={link} onClick={() => handleClick(item)}>{item}</Link>
                         </li>
                     ))}
                 </ul>
             </div>
-            <SecondaryNavigation />
+            {/* <SecondaryNavigation /> */}
         </div>
     );
 };
