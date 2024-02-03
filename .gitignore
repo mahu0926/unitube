@@ -3,5 +3,7 @@ refined-network-320317-cdee89864c6c.json
 deepfake backend/myenv/
 deepfake backend/google-cloud-cli-VERSION-darwin-arm.tar
 netflix-clone-ui/node_modules/
-venvflask-backend/db/
+venv
+flask-backend/db/
 flask-backend/test-data/
+venv/lib/python3.11/site-packages/google/api/field_behavior_pb2.py
