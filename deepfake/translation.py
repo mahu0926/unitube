@@ -90,18 +90,20 @@ def video_text_to_speech(video_path, text, file_name, target_language):
     else:
         print(f"Error: {response.status_code}")
 
-file_name = 'video1594907834.mp4'
-file_path = os.path.join('videos/input_videos', file_name)
-file_name_wo_ext, file_extension = os.path.splitext(file_name)
-wav_file = file_name_wo_ext + '.wav'
-wav_file_path = os.path.join('videos/input_audios', wav_file)
+def translator(file_name):
+    file_path = os.path.join('videos/input_videos', file_name)
+    file_name_wo_ext, file_extension = os.path.splitext(file_name)
+    wav_file = file_name_wo_ext + '.wav'
+    wav_file_path = os.path.join('videos/input_audios', wav_file)
 
-if not os.path.isfile(file_path):
-    convert_video_to_wav(file_path, wav_file_path)
-    convert_stereo_to_mono(wav_file_path, wav_file_path)
+    if not os.path.isfile(file_path):
+        convert_video_to_wav(file_path, wav_file_path)
+        convert_stereo_to_mono(wav_file_path, wav_file_path)
 
-target_language = "de"
-text = transcribe_video(wav_file_path, target_language)
-print(text)
+    target_language = "de"
+    text = transcribe_video(wav_file_path, target_language)
+    print(text)
+
+translator('video1594907834.mp4')
 #  video_text_to_speech(file_path, text, file_name, target_language)
 
